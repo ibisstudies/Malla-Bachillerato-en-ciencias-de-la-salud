@@ -1,4 +1,18 @@
 function toggleCourse(el) {
   if (el.classList.contains("disabled")) return;
   el.classList.toggle("done");
+
+  if (el.classList.contains("done")) {
+    for (let i = 0; i < 8; i++) {
+      const sparkle = document.createElement("span");
+      sparkle.className = "sparkle";
+      sparkle.style.left = `${Math.random() * 100}%`;
+      sparkle.style.top = `${Math.random() * 100}%`;
+      el.appendChild(sparkle);
+
+      setTimeout(() => {
+        sparkle.remove();
+      }, 600);
+    }
+  }
 }
