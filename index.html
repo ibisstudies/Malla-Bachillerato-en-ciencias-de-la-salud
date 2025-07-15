@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malla Curricular</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="semester">
+      <h2>1° Semestre</h2>
+      <div class="course" onclick="toggleCourse(this)">Fundamentos de Biología</div>
+      <div class="course" onclick="toggleCourse(this)">Fundamentos de Matemáticas</div>
+      <div class="course" onclick="toggleCourse(this)">Fundamentos de Química</div>
+      <div class="course" onclick="toggleCourse(this)">Habilidades Comunicativas</div>
+      <div class="course" onclick="toggleCourse(this)">Orientación Vocacional</div>
+    </div>
 
+    <div class="semester">
+      <h2>2° Semestre</h2>
+      <div class="course disabled">Biología Celular</div>
+      <div class="course disabled">Principios de Morfología</div>
+      <div class="course disabled">Principios de Psicología y Ética</div>
+      <div class="course disabled">Pensamiento Crítico</div>
+      <div class="course disabled">Introducción a las Carreras de la Salud</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
