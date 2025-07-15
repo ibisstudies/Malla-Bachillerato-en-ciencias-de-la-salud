@@ -3,6 +3,7 @@ body {
   font-family: 'Quicksand', sans-serif;
   margin: 0;
   padding: 2rem;
+  overflow-x: hidden;
 }
 
 .container {
@@ -36,6 +37,8 @@ h2 {
   transition: 0.3s;
   font-size: 1rem;
   color: #b20047;
+  position: relative;
+  overflow: hidden;
 }
 
 .course:hover {
@@ -52,4 +55,26 @@ h2 {
   background-color: #eee;
   color: #aaa;
   cursor: not-allowed;
+}
+
+/* ✨ Efecto de destellos */
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkle 0.6s ease-out forwards;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2) translateY(-10px);
+  }
 }
