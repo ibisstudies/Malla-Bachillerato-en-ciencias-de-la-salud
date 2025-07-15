@@ -1,1 +1,4 @@
-
+function toggleCourse(el) {
+  if (el.classList.contains("disabled")) return;
+  el.classList.toggle("done");
+}
