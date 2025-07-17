@@ -3,18 +3,22 @@ function toggleCourse(el) {
   el.classList.toggle("done");
 
   if (el.classList.contains("done")) {
-    for (let i = 0; i < 8; i++) {
-      const heart = document.createElement("span");
-      heart.className = "heart";
-      heart.style.left = `${Math.random() * 100}%`;
-      heart.style.top = `${Math.random() * 100}%`;
-      el.appendChild(heart);
-      setTimeout(() => heart.remove(), 800);
-    }
+    createHearts(el);
   }
 
   saveProgress();
   checkPrerequisites();
+}
+
+function createHearts(el) {
+  for (let i = 0; i < 8; i++) {
+    const heart = document.createElement("span");
+    heart.className = "heart";
+    heart.style.left = `${Math.random() * 100}%`;
+    heart.style.top = `${Math.random() * 100}%`;
+    el.appendChild(heart);
+    setTimeout(() => heart.remove(), 800);
+  }
 }
 
 function checkPrerequisites() {
@@ -36,12 +40,13 @@ function checkPrerequisites() {
       }
     }
 
-    if (group === "second" && firstSemesterDone) {
-      course.classList.remove("disabled");
-    }
-    if (group === "second" && !firstSemesterDone) {
-      course.classList.add("disabled");
-      course.classList.remove("done");
+    if (group === "second") {
+      if (firstSemesterDone) {
+        course.classList.remove("disabled");
+      } else {
+        course.classList.add("disabled");
+        course.classList.remove("done");
+      }
     }
   });
 }
@@ -58,9 +63,17 @@ function loadProgress() {
   const saved = JSON.parse(localStorage.getItem("mallaProgress") || "{}");
   Object.entries(saved).forEach(([id, done]) => {
     const el = document.getElementById(id);
-    if (el && done) el.classList.add("done");
+    if (el && done) {
+      el.classList.add("done");
+      if (!el.classList.contains("disabled")) {
+        // Solo lanza corazones si el ramo no está bloqueado al cargar
+        createHearts(el);
+      }
+    }
   });
   checkPrerequisites();
 }
+
+window.onload = loadProgress;
 
 window.onload = loadProgress;
