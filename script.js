@@ -75,5 +75,3 @@ function loadProgress() {
 }
 
 window.onload = loadProgress;
-
-window.onload = loadProgress;
