@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const ramos = document.querySelectorAll(".ramo");
 
-  // Cargar estado guardado
   const estado = JSON.parse(localStorage.getItem("estadoRamos")) || {};
 
   function guardarEstado() {
@@ -12,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < 3; i++) {
       const heart = document.createElement("div");
       heart.classList.add("heart");
-      heart.innerText = "💖";
+      heart.innerText = "♥";
       heart.style.left = `${x + Math.random() * 30 - 15}px`;
       heart.style.top = `${y + Math.random() * 30 - 15}px`;
       heart.style.position = "absolute";
@@ -33,18 +32,21 @@ document.addEventListener("DOMContentLoaded", () => {
         ramo.classList.add("aprobado");
       } else if (dep === "bio1" && !estado["bio1"]) {
         ramo.classList.add("bloqueado");
-      } else if (dep === "all1" && !["bio1", "mate1", "quim1", "com1", "voc1"].every(r => estado[r])) {
+      } else if (
+        dep === "all1" &&
+        !["bio1", "mate1", "quim1", "com1", "voc1"].every(r => estado[r])
+      ) {
         ramo.classList.add("bloqueado");
       }
     });
   }
 
   ramos.forEach(ramo => {
-    ramo.addEventListener("click", (e) => {
+    ramo.addEventListener("click", () => {
       const id = ramo.dataset.id;
       if (ramo.classList.contains("bloqueado")) return;
 
-      estado[id] = !estado[id]; // alterna entre aprobado y no aprobado
+      estado[id] = !estado[id];
       guardarEstado();
       actualizarEstado();
 
