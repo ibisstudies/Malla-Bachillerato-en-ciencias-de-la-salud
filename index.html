@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Bachillerato en Ciencias de la Salud UNAB</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1>Bachillerato en Ciencias de la Salud UNAB</h1>
-  <div class="semesters">
-    <div class="semester">
+  <div class="malla">
+    <div class="semestre">
       <h2>1° Semestre</h2>
-      <button id="bio1" class="course" onclick="toggleCourse(this)">Fundamentos de Biología</button>
-      <button id="mate1" class="course" onclick="toggleCourse(this)">Fundamentos de Matemáticas</button>
-      <button id="quim1" class="course" onclick="toggleCourse(this)">Fundamentos de Química</button>
-      <button id="habcom" class="course" onclick="toggleCourse(this)">Habilidades Comunicativas</button>
-      <button id="orient" class="course" onclick="toggleCourse(this)">Orientación Vocacional</button>
+      <div class="ramos">
+        <div class="ramo" data-id="bio1">Fundamentos de Biología</div>
+        <div class="ramo" data-id="mate1">Fundamentos de Matemáticas</div>
+        <div class="ramo" data-id="quim1">Fundamentos de Química</div>
+        <div class="ramo" data-id="com1">Habilidades Comunicativas</div>
+      </div>
     </div>
-    <div class="semester">
+    <div class="semestre">
       <h2>2° Semestre</h2>
-      <button id="bio2" class="course disabled" data-group="bio2" data-prereq="bio1" onclick="toggleCourse(this)">Biología Celular</button>
-      <button id="morfo" class="course disabled" data-group="second" onclick="toggleCourse(this)">Principios de Morfología</button>
-      <button id="psico" class="course disabled" data-group="second" onclick="toggleCourse(this)">Principios de Psicología y Ética</button>
-      <button id="pensamiento" class="course disabled" data-group="second" onclick="toggleCourse(this)">Pensamiento Crítico</button>
-      <button id="intro" class="course disabled" data-group="second" onclick="toggleCourse(this)">Introducción a las Carreras de la Salud</button>
+      <div class="ramos">
+        <div class="ramo bloqueado" data-id="bio2" data-dep="bio1">Biología Celular</div>
+        <div class="ramo bloqueado" data-id="morf" data-dep="all1">Principios de Morfología</div>
+        <div class="ramo bloqueado" data-id="psico" data-dep="all1">Principios de Psicología y Ética</div>
+        <div class="ramo bloqueado" data-id="critico" data-dep="all1">Pensamiento Crítico</div>
+        <div class="ramo bloqueado" data-id="intro" data-dep="all1">Introducción a las Carreras de la Salud</div>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>
