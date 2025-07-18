@@ -61,15 +61,16 @@ function saveProgress() {
 
 function loadProgress() {
   const saved = JSON.parse(localStorage.getItem("mallaProgress") || "{}");
+
+  // Cargamos primero el estado, sin condiciones
   Object.entries(saved).forEach(([id, done]) => {
     const el = document.getElementById(id);
     if (el && done) {
       el.classList.add("done");
-      if (!el.classList.contains("disabled")) {
-        createHearts(el);
-      }
     }
   });
+
+  // Luego chequeamos requisitos y desbloqueos
   checkPrerequisites();
 }
 
