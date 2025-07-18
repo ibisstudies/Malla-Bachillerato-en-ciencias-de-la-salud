@@ -4,22 +4,18 @@ function toggleCourse(el) {
   el.classList.toggle("done");
 
   if (el.classList.contains("done")) {
-    createHearts(el);
+    for (let i = 0; i < 8; i++) {
+      const heart = document.createElement("span");
+      heart.className = "heart";
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.top = `${Math.random() * 100}%`;
+      el.appendChild(heart);
+      setTimeout(() => heart.remove(), 800);
+    }
   }
 
   saveProgress();
   checkPrerequisites();
-}
-
-function createHearts(el) {
-  for (let i = 0; i < 8; i++) {
-    const heart = document.createElement("span");
-    heart.className = "heart";
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.top = `${Math.random() * 100}%`;
-    el.appendChild(heart);
-    setTimeout(() => heart.remove(), 800);
-  }
 }
 
 function checkPrerequisites() {
@@ -62,14 +58,10 @@ function saveProgress() {
 
 function loadProgress() {
   const saved = JSON.parse(localStorage.getItem("mallaProgress") || "{}");
-
   Object.entries(saved).forEach(([id, done]) => {
     const el = document.getElementById(id);
-    if (el && done) {
-      el.classList.add("done");
-    }
+    if (el && done) el.classList.add("done");
   });
-
   checkPrerequisites();
 }
 
