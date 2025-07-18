@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ramo.classList.add("aprobado");
       } else if (dep === "bio1" && !estado["bio1"]) {
         ramo.classList.add("bloqueado");
-      } else if (dep === "all1" && !["bio1", "mate1", "quim1", "com1"].every(r => estado[r])) {
+!["bio1", "mate1", "quim1", "com1", "voc1"].every(r => estado[r])) {
         ramo.classList.add("bloqueado");
       }
     });
