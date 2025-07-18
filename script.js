@@ -1,71 +1,58 @@
-function toggleCourse(el) {
-  if (el.classList.contains("disabled")) return;
+document.addEventListener("DOMContentLoaded", () => {
+  const ramos = document.querySelectorAll(".ramo");
 
-  el.classList.toggle("done");
+  // Cargar estado guardado
+  const estado = JSON.parse(localStorage.getItem("estadoRamos")) || {};
 
-  if (el.classList.contains("done")) {
-    createHearts(el);
+  function guardarEstado() {
+    localStorage.setItem("estadoRamos", JSON.stringify(estado));
   }
 
-  saveProgress();
-  checkPrerequisites();
-}
-
-function createHearts(el) {
-  for (let i = 0; i < 6; i++) {
-    const heart = document.createElement("span");
-    heart.className = "heart";
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.top = `${Math.random() * 100}%`;
-    el.appendChild(heart);
-    setTimeout(() => heart.remove(), 800);
-  }
-}
-
-function checkPrerequisites() {
-  const bio1 = document.getElementById("bio1");
-  const firstSemesterDone = [...document.querySelectorAll("#bio1, #mate1, #quim1, #habcom, #orient")]
-    .every(btn => btn.classList.contains("done"));
-
-  // Biología celular depende solo de Fund. Biología
-  const bio2 = document.getElementById("bio2");
-  if (bio1.classList.contains("done")) {
-    bio2.classList.remove("disabled");
-  } else {
-    bio2.classList.add("disabled");
-    bio2.classList.remove("done");
-  }
-
-  // El resto del segundo semestre depende de TODO el primer semestre aprobado
-  document.querySelectorAll('[data-group="second"]').forEach(btn => {
-    if (firstSemesterDone) {
-      btn.classList.remove("disabled");
-    } else {
-      btn.classList.add("disabled");
-      btn.classList.remove("done");
+  function mostrarCorazones(x, y) {
+    for (let i = 0; i < 3; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "💖";
+      heart.style.left = `${x + Math.random() * 30 - 15}px`;
+      heart.style.top = `${y + Math.random() * 30 - 15}px`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
     }
+  }
+
+  function actualizarEstado() {
+    ramos.forEach(ramo => {
+      const id = ramo.dataset.id;
+      ramo.classList.remove("bloqueado", "aprobado");
+
+      const dep = ramo.dataset.dep;
+      const aprobado = estado[id];
+
+      if (aprobado) {
+        ramo.classList.add("aprobado");
+      } else if (dep === "bio1" && !estado["bio1"]) {
+        ramo.classList.add("bloqueado");
+      } else if (dep === "all1" && !["bio1", "mate1", "quim1", "com1"].every(r => estado[r])) {
+        ramo.classList.add("bloqueado");
+      }
+    });
+  }
+
+  ramos.forEach(ramo => {
+    ramo.addEventListener("click", (e) => {
+      const id = ramo.dataset.id;
+      if (ramo.classList.contains("bloqueado")) return;
+
+      estado[id] = !estado[id]; // alterna entre aprobado y no aprobado
+      guardarEstado();
+      actualizarEstado();
+
+      if (estado[id]) {
+        const rect = ramo.getBoundingClientRect();
+        mostrarCorazones(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      }
+    });
   });
-}
 
-function saveProgress() {
-  const courseStates = {};
-  document.querySelectorAll(".course").forEach(course => {
-    courseStates[course.id] = course.classList.contains("done");
-  });
-  localStorage.setItem("mallaProgress", JSON.stringify(courseStates));
-}
-
-function loadProgress() {
-  const saved = JSON.parse(localStorage.getItem("mallaProgress") || "{}");
-
-  Object.entries(saved).forEach(([id, done]) => {
-    const el = document.getElementById(id);
-    if (el && done) {
-      el.classList.add("done");
-    }
-  });
-
-  checkPrerequisites();
-}
-
-window.onload = loadProgress;
+  actualizarEstado();
+});
