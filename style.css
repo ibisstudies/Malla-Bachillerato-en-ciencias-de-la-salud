@@ -1,78 +1,75 @@
 body {
-  background: #ffeef6;
-font-family: 'Quicksand', sans-serif;
-  text-align: center;
-  color: #a30058;
+  font-family: 'Quicksand', sans-serif;
+  background-color: #FEF0F5;
+  color: #A01A60;
+  margin: 0;
   padding: 20px;
+  text-align: center;
 }
 
 h1 {
-  font-size: 2.2em;
+  font-size: 2em;
   margin-bottom: 30px;
-  color: #a30058;
 }
 
-.semesters {
+.semestre {
+  background-color: #FFE4EB;
+  border: 2px solid #F38CB0;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 700px;
+}
+
+.ramos {
   display: flex;
-  justify-content: center;
-  gap: 60px;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
 }
 
-.semester {
-  background: #ffd6e8;
-  border-radius: 20px;
-  padding: 20px;
-  width: 280px;
-  box-shadow: 0 0 20px #fdd2e5;
-}
-
-h2 {
-  color: #a30058;
-  margin-bottom: 20px;
-}
-
-.course {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 12px;
-  background: #f9b8d0;
-  color: #fff;
-  border: none;
+.ramo {
+  background-color: #FFBAD1;
+  border: 2px solid #A01A60;
   border-radius: 10px;
-  font-size: 1.1em;
+  padding: 10px 15px;
   cursor: pointer;
-  position: relative;
-  transition: 0.3s;
+  width: fit-content;
+  min-width: 200px;
+  transition: all 0.3s ease;
 }
 
-.course.done {
-  background: #c06089;
+.ramo.aprobado {
+  background-color: #FFE4EB;
   text-decoration: line-through;
+  color: #B94A70;
 }
 
-.course.disabled {
-  background: #d3d3d3;
-  color: #aaa;
-  cursor: not-allowed;
-  text-decoration: none;
+.ramo.bloqueado {
+  background-color: transparent;
+  border: 2px dashed #A01A60;
+  color: gray;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* 💕 Mini corazones */
+@keyframes pop-hearts {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(1.5);
+    opacity: 0;
+  }
 }
 
 .heart {
   position: absolute;
-  color: white;
-  animation: sparkle 0.8s ease-out;
-  font-size: 14px;
-}
-
-@keyframes sparkle {
-  0% {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2) translateY(-30px);
-    opacity: 0;
-  }
+  font-size: 20px;
+  color: #F38CB0;
+  animation: pop-hearts 1s ease-out forwards;
 }
