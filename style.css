@@ -8,16 +8,17 @@ body {
 
 .main-title {
   text-align: center;
-  color: #E53993;
-  font-size: 2rem;
+  color: #b20047;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
 }
 
 .container {
   display: flex;
-  gap: 2rem;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 3rem;
+  flex-wrap: nowrap;
 }
 
 .semester {
@@ -25,7 +26,7 @@ body {
   padding: 1rem;
   border-radius: 15px;
   box-shadow: 0 0 10px #f9b6c7;
-  min-width: 280px;
+  width: 300px;
 }
 
 h2 {
@@ -46,6 +47,7 @@ h2 {
   color: #b20047;
   position: relative;
   overflow: hidden;
+  border: 1px solid transparent;
 }
 
 .course:hover {
@@ -64,7 +66,7 @@ h2 {
   cursor: not-allowed;
 }
 
-/* 💖 Corazones flotantes */
+/* Corazones flotantes */
 .heart {
   position: absolute;
   width: 10px;
