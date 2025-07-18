@@ -15,7 +15,6 @@ function createHearts(el) {
   for (let i = 0; i < 6; i++) {
     const heart = document.createElement("span");
     heart.className = "heart";
-    heart.textContent = "💖";
     heart.style.left = `${Math.random() * 100}%`;
     heart.style.top = `${Math.random() * 100}%`;
     el.appendChild(heart);
