@@ -61,8 +61,9 @@ h2 {
 .heart {
   position: absolute;
   color: white;
-  animation: sparkle 0.8s ease-out;
   font-size: 12px;
+  pointer-events: none;
+  animation: sparkle 0.8s ease-out;
 }
 
 @keyframes sparkle {
