@@ -1,5 +1,6 @@
 function toggleCourse(el) {
   if (el.classList.contains("disabled")) return;
+
   el.classList.toggle("done");
 
   if (el.classList.contains("done")) {
@@ -62,15 +63,17 @@ function saveProgress() {
 function loadProgress() {
   const saved = JSON.parse(localStorage.getItem("mallaProgress") || "{}");
 
-  // Cargamos primero el estado, sin condiciones
+  // Primero desbloqueamos los cursos para poder marcar como done
+  checkPrerequisites();
+
   Object.entries(saved).forEach(([id, done]) => {
     const el = document.getElementById(id);
-    if (el && done) {
+    if (el && !el.classList.contains("disabled") && done) {
       el.classList.add("done");
     }
   });
 
-  // Luego chequeamos requisitos y desbloqueos
+  // Volvemos a verificar si hay que activar otros al marcar cursos
   checkPrerequisites();
 }
 
