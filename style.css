@@ -1,106 +1,76 @@
 body {
-  background-color: #ffeef5;
-  font-family: 'Quicksand', sans-serif;
-  margin: 0;
-  padding: 2rem;
-  overflow-x: hidden;
-}
-
-.main-title {
+  background: #ffeef6;
+  font-family: 'Segoe UI', sans-serif;
   text-align: center;
-  color: #b20047;
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  color: #a30058;
+  padding: 20px;
 }
 
-.container {
+h1 {
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.semesters {
   display: flex;
-  gap: 2rem;
   justify-content: center;
+  gap: 50px;
   flex-wrap: wrap;
 }
 
 .semester {
-  background-color: #fdd5e3;
-  padding: 1rem;
-  border-radius: 15px;
-  box-shadow: 0 0 10px #f9b6c7;
-  min-width: 280px;
+  background: #ffd6e8;
+  border-radius: 20px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 0 20px #fdd2e5;
 }
 
 h2 {
-  text-align: center;
-  color: #b20047;
-  font-size: 1.5rem;
+  color: #a30058;
 }
 
 .course {
-  background-color: #f9c2d6;
-  margin: 0.5rem 0;
-  padding: 0.75rem;
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  background: #f9b8d0;
+  color: #fff;
+  border: none;
   border-radius: 10px;
-  text-align: center;
+  font-size: 1em;
   cursor: pointer;
-  transition: 0.3s;
-  font-size: 1rem;
-  color: #b20047;
   position: relative;
-  overflow: hidden;
-}
-
-.course:hover {
-  background-color: #f7acc5;
+  transition: 0.3s;
 }
 
 .course.done {
-  background-color: #d67197;
+  background: #c06089;
   text-decoration: line-through;
-  color: white;
 }
 
 .course.disabled {
-  background-color: #eee;
+  background: #d3d3d3;
   color: #aaa;
   cursor: not-allowed;
+  text-decoration: none;
 }
 
-/* 💖 Corazones flotantes */
 .heart {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: white;
-  transform: rotate(45deg);
-  animation: floatHeart 0.8s ease-out forwards;
+  color: white;
+  animation: sparkle 0.8s ease-out;
+  font-size: 12px;
 }
 
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: white;
-  border-radius: 50%;
-}
-
-.heart::before {
-  top: -5px;
-  left: 0;
-}
-
-.heart::after {
-  top: 0;
-  left: -5px;
-}
-
-@keyframes floatHeart {
+@keyframes sparkle {
   0% {
+    transform: scale(1) translateY(0);
     opacity: 1;
-    transform: scale(1) rotate(45deg);
   }
   100% {
+    transform: scale(2) translateY(-30px);
     opacity: 0;
-    transform: scale(2) translateY(-20px) rotate(45deg);
   }
 }
