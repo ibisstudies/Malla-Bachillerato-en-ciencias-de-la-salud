@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       heart.innerText = "💖";
       heart.style.left = `${x + Math.random() * 30 - 15}px`;
       heart.style.top = `${y + Math.random() * 30 - 15}px`;
+      heart.style.position = "absolute";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 1000);
     }
@@ -23,16 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function actualizarEstado() {
     ramos.forEach(ramo => {
       const id = ramo.dataset.id;
-      ramo.classList.remove("bloqueado", "aprobado");
-
       const dep = ramo.dataset.dep;
       const aprobado = estado[id];
+
+      ramo.classList.remove("bloqueado", "aprobado");
 
       if (aprobado) {
         ramo.classList.add("aprobado");
       } else if (dep === "bio1" && !estado["bio1"]) {
         ramo.classList.add("bloqueado");
-!["bio1", "mate1", "quim1", "com1", "voc1"].every(r => estado[r])) {
+      } else if (dep === "all1" && !["bio1", "mate1", "quim1", "com1", "voc1"].every(r => estado[r])) {
         ramo.classList.add("bloqueado");
       }
     });
