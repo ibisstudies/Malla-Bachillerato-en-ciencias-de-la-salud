@@ -63,19 +63,13 @@ function saveProgress() {
 function loadProgress() {
   const saved = JSON.parse(localStorage.getItem("mallaProgress") || "{}");
 
-  // Primero verificamos los prerrequisitos
-  checkPrerequisites();
-
-  // Luego aplicamos los cursos completados
   Object.entries(saved).forEach(([id, done]) => {
     const el = document.getElementById(id);
     if (el && done) {
       el.classList.add("done");
-      el.classList.remove("disabled");
     }
   });
 
-  // Por si acaso, volvemos a verificar
   checkPrerequisites();
 }
 
